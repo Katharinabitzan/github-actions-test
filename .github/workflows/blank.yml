@@ -7,6 +7,12 @@ on:
       - ready_for_review
     branches:
       - development
+      
+  pull_request_target:
+    types:
+      - synchronize
+    branches:
+      - development
 
 jobs:
   somejob:
