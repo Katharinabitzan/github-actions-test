@@ -17,11 +17,22 @@ jobs:
 
 
     steps:
+    
+      - name: Compare commit SHAs
+        id: check_changes
+        run: |
+          if [ "${{ github.event.pull_request.head.sha }}" == "${{ github.event.pull_request.base.sha }}" ]; then
+            echo "No changes detected. Skipping workflow."
+            echo "::set-output name=changes::false"
+          else
+            echo "Changes detected. Running workflow."
+            echo "::set-output name=changes::true"
+          fi
+    
       - name: Echo it worked
+        if: steps.check_changes.outputs.changes == 'true'
         run: echo "This workflow is running"
         
         
-      - name: Checkout repository
-        uses: actions/checkout@v2
 
 
