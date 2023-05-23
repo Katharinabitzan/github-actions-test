@@ -9,20 +9,19 @@ on:
     branches:
       - development
       
-  pull_request_target:
-    types:
-      - synchronize
-    branches:
-      - development
+      
 
 jobs:
   somejob:
     runs-on: ubuntu-latest
     timeout-minutes: 1
 
+
     steps:
       - name: Echo it worked
         run: echo "This workflow is running"
+        
+        
 
       - name: Checkout repository
         uses: actions/checkout@v2
